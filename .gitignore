@@ -1,0 +1,10 @@
+# Herramientas locales / preview
+.claude/
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Logo fuente original (ya está optimizado en images/logo-addware.png)
+Logo (1).png
