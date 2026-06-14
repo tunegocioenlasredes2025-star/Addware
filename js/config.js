@@ -54,3 +54,15 @@ window.waProducto = function (nombreProducto) {
     `Hola, vi el producto "${nombreProducto}" en la web de Addware y quisiera más información.`
   );
 };
+
+/* ID estable por producto (derivado del nombre del archivo de imagen) */
+window.productoId = function (p) {
+  const base = (p && p.imagen ? p.imagen.split("/").pop().replace(/\.[a-z0-9]+$/i, "") : "");
+  return base || encodeURIComponent((p && p.nombre) || "");
+};
+window.findProducto = function (id) {
+  return (window.PRODUCTOS || []).find(p => window.productoId(p) === id);
+};
+window.urlProducto = function (p) {
+  return "producto.html?id=" + encodeURIComponent(window.productoId(p));
+};

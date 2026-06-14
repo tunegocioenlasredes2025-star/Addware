@@ -226,12 +226,12 @@ input, select { font-family: inherit; }
 }
 .prod-card:hover { transform: translateY(-6px); border-color: rgba(5, 176, 240, .4); box-shadow: var(--sombra); }
 .prod-media {
-  position: relative; aspect-ratio: 4 / 3; background: var(--negro-3);
-  display: grid; place-items: center; overflow: hidden;
+  position: relative; aspect-ratio: 1 / 1; background: #fff;
+  display: grid; place-items: center; overflow: hidden; cursor: pointer;
 }
-.prod-media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-media); }
-.prod-card:hover .prod-media img { transform: scale(1.06); }
-.prod-media .placeholder { display: grid; place-items: center; gap: 8px; color: var(--gris); text-align: center; padding: 16px; }
+.prod-media img { width: 100%; height: 100%; object-fit: contain; padding: 16px; transition: transform var(--t-media); }
+.prod-card:hover .prod-media img { transform: scale(1.05); }
+.prod-media .placeholder { position: absolute; inset: 0; display: grid; place-items: center; gap: 8px; background: var(--negro-3); color: var(--gris); text-align: center; padding: 16px; }
 .prod-media .placeholder .ph-ico { font-size: 2.6rem; opacity: .5; }
 .prod-media .placeholder small { font-size: .72rem; letter-spacing: .05em; }
 .prod-cat {
@@ -249,6 +249,41 @@ input, select { font-family: inherit; }
 .prod-price .list { font-size: .82rem; color: var(--gris); }
 .prod-price .list b { color: var(--gris-claro); font-weight: 700; }
 .prod-body .btn { margin-top: 14px; }
+.prod-title { display: block; }
+.prod-title:hover h3 { color: var(--azul); }
+.prod-detail-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; color: var(--gris-claro); font-weight: 600; font-size: .86rem; align-self: center; transition: color var(--t-rapida); }
+.prod-detail-link:hover { color: var(--azul); }
+
+/* =====================================================================
+   PÁGINA DE DETALLE DE PRODUCTO
+   ===================================================================== */
+.pd { padding: 44px 0 72px; }
+.pd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
+.pd-media { background: #fff; border-radius: var(--radio); aspect-ratio: 1 / 1; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--linea); box-shadow: var(--sombra); position: relative; }
+.pd-media img { width: 100%; height: 100%; object-fit: contain; padding: 34px; }
+.pd-media .prod-cat { top: 16px; left: 16px; }
+.pd-info .prod-marca { font-size: .82rem; }
+.pd-info h1 { font-size: clamp(1.5rem, 3.5vw, 2.3rem); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; margin: 6px 0 14px; }
+.pd-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 13px; border-radius: 999px; background: rgba(5,176,240,.12); border: 1px solid rgba(5,176,240,.3); color: var(--azul-claro); font-size: .82rem; font-weight: 700; }
+.pd-price { margin: 24px 0; padding: 20px 22px; background: var(--negro-2); border: 1px solid var(--linea); border-radius: var(--radio); }
+.pd-price .now { font-size: 2.1rem; font-weight: 800; color: var(--azul); letter-spacing: -.02em; }
+.pd-price .now span { font-size: .82rem; font-weight: 600; color: var(--gris); margin-left: 8px; }
+.pd-price .list { display: block; margin-top: 6px; color: var(--gris); font-size: .95rem; }
+.pd-price .list b { color: var(--gris-claro); }
+.pd-desc { color: var(--gris-claro); font-size: 1.05rem; line-height: 1.7; }
+.pd-feats { display: grid; gap: 10px; margin: 22px 0; }
+.pd-feat { display: flex; gap: 10px; align-items: center; color: var(--gris-claro); font-size: .95rem; }
+.pd-feat .ico { color: var(--azul); }
+.pd-actions { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+.pd-back { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 22px; color: var(--gris-claro); font-weight: 600; font-size: .92rem; }
+.pd-back:hover { color: var(--azul); }
+.pd-notfound { text-align: center; padding: 70px 20px; }
+.pd-notfound .big { font-size: 3.2rem; margin-bottom: 14px; }
+
+@media (max-width: 760px) {
+  .pd-grid { grid-template-columns: 1fr; gap: 26px; }
+  .pd-actions .btn { width: 100%; }
+}
 
 /* =====================================================================
    BUSCADOR + FILTROS (catálogo)

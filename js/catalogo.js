@@ -54,15 +54,16 @@
              onerror="this.parentElement.innerHTML='<div class=\\'placeholder\\'><div class=\\'ph-ico\\'>${iconoCat(p.categoria)}</div><small>FOTO PRÓXIMAMENTE</small></div>'">`
       : `<div class="placeholder"><div class="ph-ico">${iconoCat(p.categoria)}</div><small>FOTO PRÓXIMAMENTE</small></div>`;
 
+    const url = window.urlProducto(p);
     return `
       <article class="prod-card reveal">
-        <div class="prod-media">
+        <a class="prod-media" href="${url}" aria-label="Ver ${p.nombre}">
           <span class="prod-cat">${nombreCat(p.categoria)}</span>
           ${media}
-        </div>
+        </a>
         <div class="prod-body">
           ${p.marca ? `<span class="prod-marca">${p.marca}</span>` : ""}
-          <h3>${p.nombre}</h3>
+          <a class="prod-title" href="${url}"><h3>${p.nombre}</h3></a>
           <p>${p.descripcion || ""}</p>
           ${precioHTML(p)}
           <a class="btn btn--wa btn--block" target="_blank" rel="noopener"
@@ -70,6 +71,7 @@
              <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M16 .5C7.5.5.6 7.4.6 15.9c0 2.8.7 5.4 2.1 7.8L.5 31.5l8-2.1c2.3 1.3 4.9 1.9 7.5 1.9 8.5 0 15.4-6.9 15.4-15.4S24.5.5 16 .5z"/></svg>
              Consultar producto
           </a>
+          <a class="prod-detail-link" href="${url}">Ver más información →</a>
         </div>
       </article>`;
   }

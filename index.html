@@ -320,12 +320,14 @@
           : `<div class="placeholder"><div class="ph-ico">${ico}</div><small>FOTO PRÓXIMAMENTE</small></div>`;
         const lista = p.precioLista && p.precioLista !== p.precio ? `<span class="list">Lista <b>$${p.precioLista}</b></span>` : "";
         const precio = p.precio ? `<div class="prod-price"><span class="now">$${p.precio}<small>Contado / transf.</small></span>${lista}</div>` : "";
+        const url = window.urlProducto(p);
         return `<article class="prod-card reveal visible">
-          <div class="prod-media"><span class="prod-cat">${cat}</span>${media}</div>
+          <a class="prod-media" href="${url}" aria-label="Ver ${p.nombre}"><span class="prod-cat">${cat}</span>${media}</a>
           <div class="prod-body">
             ${p.marca ? `<span class="prod-marca">${p.marca}</span>` : ""}
-            <h3>${p.nombre}</h3><p>${p.descripcion || ""}</p>${precio}
+            <a class="prod-title" href="${url}"><h3>${p.nombre}</h3></a><p>${p.descripcion || ""}</p>${precio}
             <a class="btn btn--wa btn--block" target="_blank" rel="noopener" href="${window.waProducto(p.nombre)}">Consultar producto</a>
+            <a class="prod-detail-link" href="${url}">Ver más información →</a>
           </div></article>`;
       }).join("");
     })();
