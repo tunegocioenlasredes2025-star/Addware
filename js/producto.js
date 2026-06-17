@@ -72,12 +72,16 @@
         <p class="pd-desc">${p.descripcion || ""}</p>
         <div class="pd-feats">${feats}</div>
         <div class="pd-actions">
+          <button class="btn btn--primary btn--add" data-add="${id}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            Agregar al carrito
+          </button>
           <a class="btn btn--wa" target="_blank" rel="noopener" href="${window.waProducto(p.nombre)}">
             <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M16 .5C7.5.5.6 7.4.6 15.9c0 2.8.7 5.4 2.1 7.8L.5 31.5l8-2.1c2.3 1.3 4.9 1.9 7.5 1.9 8.5 0 15.4-6.9 15.4-15.4S24.5.5 16 .5z"/></svg>
-            Consultar por WhatsApp
+            Consultar
           </a>
-          <a class="btn btn--ghost" href="catalogo.html?cat=${p.categoria}">Ver más ${nombreCat(p.categoria)}</a>
         </div>
+        <a class="prod-detail-link" style="margin-top:16px" href="catalogo.html?cat=${p.categoria}">Ver más ${nombreCat(p.categoria)} →</a>
       </div>
     </div>`;
 
@@ -95,13 +99,17 @@
       const rlista = r.precioLista && r.precioLista !== r.precio ? `<span class="list">Lista <b>$${r.precioLista}</b></span>` : "";
       const rmedia = r.imagen ? `<img src="${r.imagen}" alt="${r.nombre}" loading="lazy">`
         : `<div class="placeholder"><div class="ph-ico">${iconoCat(r.categoria)}</div><small>FOTO PRÓXIMAMENTE</small></div>`;
+      const rid = window.productoId(r);
       return `<article class="prod-card reveal visible">
         <a class="prod-media" href="${url}" aria-label="Ver ${r.nombre}"><span class="prod-cat">${nombreCat(r.categoria)}</span>${rmedia}</a>
         <div class="prod-body">
           ${r.marca ? `<span class="prod-marca">${r.marca}</span>` : ""}
           <a class="prod-title" href="${url}"><h3>${r.nombre}</h3></a>
           ${r.precio ? `<div class="prod-price"><span class="now">$${r.precio}<small>Contado / transf.</small></span>${rlista}</div>` : ""}
-          <a class="btn btn--wa btn--block" target="_blank" rel="noopener" href="${window.waProducto(r.nombre)}">Consultar</a>
+          <div class="prod-actions">
+            <button class="btn btn--primary btn--add" style="flex:1" data-add="${rid}">＋ Agregar</button>
+            <a class="btn btn--wa" aria-label="Consultar por WhatsApp" target="_blank" rel="noopener" href="${window.waProducto(r.nombre)}"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16 .5C7.5.5.6 7.4.6 15.9c0 2.8.7 5.4 2.1 7.8L.5 31.5l8-2.1c2.3 1.3 4.9 1.9 7.5 1.9 8.5 0 15.4-6.9 15.4-15.4S24.5.5 16 .5z"/></svg></a>
+          </div>
           <a class="prod-detail-link" href="${url}">Ver más información →</a>
         </div></article>`;
     }).join("");
